@@ -22,18 +22,18 @@
 @keyframes change {
     0%
     {
-        background-image: url('src/Images/Hero/img-1.jpg');
+        background-image: url('src/Images/Hero/img-1.JPG');
     }
     25%{
-        background-image: url('src/Images/Hero/img-4.jpg');
+        background-image: url('src/Images/Hero/img-4.JPG');
     }
     50%
     {
-        background-image: url('src/Images/Hero/img-2.jpg');
+        background-image: url('src/Images/Hero/img-2.JPG');
     }
     75%
     {
-        background-image: url('src/Images/Hero/img-3.jpg');
+        background-image: url('src/Images/Hero/img-3.JPG');
     }
 }
 

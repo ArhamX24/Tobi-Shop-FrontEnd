@@ -27,6 +27,9 @@ export default {
       width:{
         "1/10": "10%"
       },
+      animation: {
+        "change": "change 10s infinite ease-in-out"
+      },
     },
   },
     plugins: [

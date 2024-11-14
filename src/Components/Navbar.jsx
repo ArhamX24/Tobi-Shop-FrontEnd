@@ -1,17 +1,21 @@
 import React,{useContext, useEffect, useState} from "react";
 import { themeContext } from "../Components/ThemeStore";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import logo from "/src/Images/logo.svg"
 
 const Navbar = () => {
     const [suggestion, setSuggestion] = useState(null)
     const {Theme, setTheme} = useContext(themeContext)
 
     let totalCartItems = useSelector((Store)=> Store.cart.total);
+    let totalWishlistItems = useSelector((Store)=> Store.wishlist.total);
 
     const handleThemeChange = () => {
         setTheme(Theme === 'light' ? 'dark' : 'light')
     }
+
+    let navigate = useNavigate()
 
     let timer = null
 
@@ -26,9 +30,9 @@ const Navbar = () => {
       setSuggestion(data?.products || []);
     }
 
-    const clearSearch = ()=>{
+    const clearSearch = (id)=>{
+      navigate(`/product/${id}`)
       setSuggestion(null)
-
     }
 
   return (
@@ -61,13 +65,13 @@ const Navbar = () => {
                 <Link to={'/profile'}>Profile</Link>
               </li>
               <li>
-                <Link to={'/wishlist'}>Wishlist</Link>
+                <Link to={'/wishlist'}><sup>{totalWishlistItems}</sup>Wishlist</Link>
               </li>
             </ul>
           </div>
           <Link to={'/'} className="btn btn-ghost text-xl text-screenColor m-0">
-          <img src="/src/Images/logo.svg" alt="" className="w-10 h-10" />
-          JustBuy</Link>
+          <img src={logo} alt="" className="w-10 h-10" />
+          Tobi's Shop</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
@@ -75,7 +79,7 @@ const Navbar = () => {
               <Link to={'/profile'}>Profile</Link>
             </li>
             <li>
-              <Link to={'/wishlist'}>Wishlist</Link>
+              <Link to={'/wishlist'}><sup>{totalWishlistItems}</sup>Wishlist</Link>
             </li>
           </ul>
         </div>
@@ -141,12 +145,10 @@ const Navbar = () => {
 
             suggestion?.map((item)=>{
               return(
-            <Link to={`/product/${item.id}`} onClick={clearSearch}>
-                <div className="flex items-center justify-between w-full px-2 border overflow-auto bg-inherit hover:bg-slate-200 transition-all ease-in-out duration-700 cursor-pointer">
+                <div onClick={()=>{clearSearch(item.id)}} className="flex items-center justify-between w-full px-2 border overflow-auto bg-inherit hover:bg-slate-200 transition-all ease-in-out duration-700 cursor-pointer">
                   <img width={50} src={item.thumbnail} alt="" />
                   <p className="text-ellipsis ">{item.title}</p>
                 </div>
-                </Link>
               )
             })
           }

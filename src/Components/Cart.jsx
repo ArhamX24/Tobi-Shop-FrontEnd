@@ -1,11 +1,9 @@
 import React from 'react'
 import { useContext } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
 import {themeContext} from './ThemeStore'
-import Store from '../Store/Store'
 import Cartitems from './Cartitems'
 import { ascendingSort, descendingSort, removeItem, clearCart } from '../Store/CartSlice'
-import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 const Cart = () => {

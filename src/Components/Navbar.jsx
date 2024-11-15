@@ -65,7 +65,13 @@ const Navbar = () => {
                 <Link to={'/profile'}>Profile</Link>
               </li>
               <li>
-                <Link to={'/wishlist'}><sup>{totalWishlistItems}</sup>Wishlist</Link>
+                <Link to={'/wishlist'}>{
+                totalWishlistItems >=1 ? 
+                <sup>{totalWishlistItems}
+                </sup>
+                :
+                ""
+              }Wishlist</Link>
               </li>
             </ul>
           </div>
@@ -79,7 +85,14 @@ const Navbar = () => {
               <Link to={'/profile'}>Profile</Link>
             </li>
             <li>
-              <Link to={'/wishlist'}><sup>{totalWishlistItems}</sup>Wishlist</Link>
+              <Link to={'/wishlist'}>{
+                totalWishlistItems >=1 ? 
+                <sup>{totalWishlistItems}
+                </sup>
+                :
+                ""
+              }
+                Wishlist</Link>
             </li>
           </ul>
         </div>

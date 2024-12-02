@@ -10,7 +10,8 @@ import { useNavigate } from "react-router-dom";
 
 const ProfilePage = () => {
   const { Theme} = useContext(themeContext);
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoadingEdit, setIsLoadingEdit] = useState(false)
+  const [isLoadingDelete, setIsLoadingDelete] = useState(false)
 
   let userData = useSelector((store) => store.user.items);
 
@@ -27,12 +28,12 @@ const ProfilePage = () => {
   let handleEdit = async () => {
     let updatedName = usernameRef.current.value;
     let updatedPhoneNumber = phNumberRef.current.value;
-    setIsLoading(true)
+    setIsLoadingEdit(true)
     try {
       let res = await axios.patch(baseUrl+updateUrl, {username: updatedName ,phNumber: updatedPhoneNumber}, {withCredentials: true});
       let resData = res?.data;
 
-      setIsLoading(false)
+      setIsLoadingEdit(false)
 
       if(resData?.result == true){
         dispatch(addUser(resData.data))
@@ -46,12 +47,12 @@ const ProfilePage = () => {
 
 
   const handleDelete = async () => {
-    setIsLoading(true)
+    setIsLoadingDelete(true)
     try {
       let res = await axios.delete(baseUrl+deleteUrl, {withCredentials: true}, {data: userData?._id})
       let resData = res?.data;
 
-      setIsLoading(false)
+      setIsLoadingDelete(false)
 
       if(resData?.result == true){
         dispatch(deleteUser())
@@ -85,12 +86,12 @@ const ProfilePage = () => {
           <div className="text-center">
             <label htmlFor="my_modal_6" className="btn btn-outline text-screenColor hover:bg-hoverColor hover:text-white">
               {
-                isLoading ? <span className="loading loading-spinner loading-md"></span>  : "Edit Profile"
+                isLoadingEdit ? <span className="loading loading-spinner loading-md"></span>  : "Edit Profile"
               }
             </label>
             <button className="btn btn-outline btn-error text-screenColor ml-3 hover:bg-hoverColor hover:text-white" onClick={handleDelete}>
               {
-                isLoading ? <span className="loading loading-spinner loading-md"></span>  : "Delete Account"
+                isLoadingDelete ? <span className="loading loading-spinner loading-md"></span>  : "Delete Account"
               }
             </button>
             <input type="checkbox" id="my_modal_6" className={Theme == "light" ? "modal-toggle bg-gray-100" : "modal-toggle bg-gray-800"} />

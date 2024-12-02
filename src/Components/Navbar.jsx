@@ -24,8 +24,8 @@ const Navbar = () => {
     }
 
     const handleLogout = async () => {
+      setIsLoading(true)
       try {
-        setIsLoading(true)
         let res = await axios.post(baseUrl+logoutUrl, {}, {withCredentials: true})
         let data = res?.data;
 

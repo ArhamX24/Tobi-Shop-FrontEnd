@@ -27,8 +27,8 @@ const ProfilePage = () => {
   let handleEdit = async () => {
     let updatedName = usernameRef.current.value;
     let updatedPhoneNumber = phNumberRef.current.value;
+    setIsLoading(true)
     try {
-      setIsLoading(true)
       let res = await axios.patch(baseUrl+updateUrl, {username: updatedName ,phNumber: updatedPhoneNumber}, {withCredentials: true});
       let resData = res?.data;
 
@@ -46,8 +46,8 @@ const ProfilePage = () => {
 
 
   const handleDelete = async () => {
+    setIsLoading(true)
     try {
-      setIsLoading(true)
       let res = await axios.delete(baseUrl+deleteUrl, {withCredentials: true}, {data: userData?._id})
       let resData = res?.data;
 

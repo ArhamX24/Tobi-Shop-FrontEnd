@@ -32,7 +32,6 @@ const Home = () => {
     
   }
   
-  console.log(suggestion);
 
   
   const clearSearch = ()=>{

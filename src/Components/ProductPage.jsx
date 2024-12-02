@@ -21,9 +21,6 @@ const ProductPage = () => {
     let cartData = useSelector((Store)=> Store.cart.items);
     let wishlistData = useSelector((Store)=> Store.wishlist.items);
 
-    console.log(wishlistData);
-    
-
     let productInCart = () => {
       let idx = cartData.findIndex((item)=> item.data.id == id);
 
@@ -79,8 +76,6 @@ const ProductPage = () => {
     const handleReviewIdx = (index)=>{
         setReviewIdx(reviewIdx == index ? null : index)
     }
-    
-    // console.log(product);
 
     let {title, category, price, thumbnail, rating , reviews, brand, weight, returnPolicy, images, description, warrantyInformation} = product
 

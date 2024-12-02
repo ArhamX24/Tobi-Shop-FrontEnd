@@ -14,7 +14,6 @@ const Cart = () => {
 
    const {Theme} = useContext(themeContext)
 
-  //  console.log(cartData);
 
    let totalAmount = 0
 

@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 
 const ProfilePage = () => {
   const { Theme} = useContext(themeContext);
+  const [isLoading, setIsLoading] = useState(false)
+
   let userData = useSelector((store) => store.user.items);
 
   console.log(userData);
@@ -26,8 +28,11 @@ const ProfilePage = () => {
     let updatedName = usernameRef.current.value;
     let updatedPhoneNumber = phNumberRef.current.value;
     try {
+      setIsLoading(true)
       let res = await axios.patch(baseUrl+updateUrl, {username: updatedName ,phNumber: updatedPhoneNumber}, {withCredentials: true});
       let resData = res?.data;
+
+      setIsLoading(false)
 
       if(resData?.result == true){
         dispatch(addUser(resData.data))
@@ -42,11 +47,11 @@ const ProfilePage = () => {
 
   const handleDelete = async () => {
     try {
+      setIsLoading(true)
       let res = await axios.delete(baseUrl+deleteUrl, {withCredentials: true}, {data: userData?._id})
       let resData = res?.data;
 
-      console.log(resData, "deleyte");
-      
+      setIsLoading(false)
 
       if(resData?.result == true){
         dispatch(deleteUser())
@@ -79,10 +84,14 @@ const ProfilePage = () => {
           <h2 className="text-2xl font-semibold text-center mb-2 capitalize">{userData?.username}</h2>
           <div className="text-center">
             <label htmlFor="my_modal_6" className="btn btn-outline text-screenColor hover:bg-hoverColor hover:text-white">
-              Edit Profile
+              {
+                isLoading ? <span className="loading loading-spinner loading-md"></span>  : "Edit Profile"
+              }
             </label>
             <button className="btn btn-outline btn-error text-screenColor ml-3 hover:bg-hoverColor hover:text-white" onClick={handleDelete}>
-              Delete Account
+              {
+                isLoading ? <span className="loading loading-spinner loading-md"></span>  : "Delete Account"
+              }
             </button>
             <input type="checkbox" id="my_modal_6" className={Theme == "light" ? "modal-toggle bg-gray-100" : "modal-toggle bg-gray-800"} />
             <div className={Theme == 'light' ?  "modal bg-gray-100" : "modal bg-gray-800"} role="dialog">

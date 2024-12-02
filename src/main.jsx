@@ -18,12 +18,15 @@ import { Provider } from 'react-redux'
 import Store from './Store/Store.js'
 import CheckOutPage from './Components/CheckOutPage.jsx'
 import WishList from './Components/WishList.jsx'
+import Login from './Components/Login.jsx'
+import SignUp from './Components/Signup.jsx'
+import AuthWrapper from './Components/AuthWrapper.jsx'
 
 
 let AppRouter = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: <AuthWrapper><App/></AuthWrapper>,
     children: [
       {
         path: "/",
@@ -76,8 +79,16 @@ let AppRouter = createBrowserRouter([
       {
         path: '/wishlist',
         element: <WishList></WishList>
-      }
-    ]
+      },
+    ],
+  },
+  {
+    path: '/signup',
+    element: <SignUp></SignUp>
+  },
+  {
+    path: '/login',
+    element: <Login></Login>
   }
 ])
 

@@ -28,6 +28,15 @@ const ProfilePage = () => {
   let handleEdit = async () => {
     let updatedName = usernameRef.current.value;
     let updatedPhoneNumber = phNumberRef.current.value;
+    
+    if(updatedName == ""){
+      updatedName == userData?.username
+    }
+
+    if(updatedPhoneNumber == ""){
+      updatedPhoneNumber = userData?.phNumber
+    }
+
     setIsLoadingEdit(true)
     try {
       let res = await axios.patch(baseUrl+updateUrl, {username: updatedName ,phNumber: updatedPhoneNumber}, {withCredentials: true});

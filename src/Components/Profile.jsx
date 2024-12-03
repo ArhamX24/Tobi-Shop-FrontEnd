@@ -14,15 +14,12 @@ const ProfilePage = () => {
   const [isLoadingDelete, setIsLoadingDelete] = useState(false)
 
   let userData = useSelector((store) => store.user.items);
-
-  console.log(userData);
   
-
   let dispatch = useDispatch()
   let navigate = useNavigate()
 
-  let phNumberRef = useRef("")
   let usernameRef = useRef("")
+  let phNumberRef = useRef("")
 
   
   let handleEdit = async () => {
@@ -30,7 +27,7 @@ const ProfilePage = () => {
     let updatedPhoneNumber = phNumberRef.current.value;
     
     if(updatedName == ""){
-      updatedName == userData?.username
+      updatedName = userData?.username
     }
 
     if(updatedPhoneNumber == ""){
@@ -107,8 +104,8 @@ const ProfilePage = () => {
             <div className={Theme == 'light' ?  "modal bg-gray-100" : "modal bg-gray-800"} role="dialog">
               <div className={Theme == 'light' ?  "modal-box text-black bg-gray-100" : "modal-box text-white bg-gray-700"}>
               <div className="join flex-col">
-                  <input className={Theme == "light" ? "input input-bordered join-item bg-white mb-3" : "input input-bordered join-item bg-gray-500 text-white mb-3"} placeholder="username" ref={usernameRef} />
-                  <input className={Theme == "light" ? "input input-bordered join-item bg-white mb-3" : "input input-bordered join-item bg-gray-500 text-white mb-3"}  placeholder="Phone Number" ref={phNumberRef} />
+                  <input className={Theme == "light" ? "input input-bordered join-item bg-white mb-3" : "input input-bordered join-item bg-gray-500 text-white mb-3"} placeholder="username" ref={usernameRef}  />
+                  <input className={Theme == "light" ? "input input-bordered join-item bg-white mb-3" : "input input-bordered join-item bg-gray-500 text-white mb-3"}  placeholder="Phone Number" ref={phNumberRef}/>
               </div>
                 <div className="modal-action">
                   <label htmlFor="my_modal_6" className="btn btn-outline text-screenColor hover:bg-hoverColor hover:text-white" onClick={handleEdit}>

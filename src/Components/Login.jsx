@@ -12,6 +12,7 @@ const Login = () => {
   const [error, setError] = useState('')
   let navigate = useNavigate()
 
+
   const getUser = async () => {
     try{
       let response = await axios.get(baseUrl+getUrl, {withCredentials: true})
@@ -38,7 +39,6 @@ const Login = () => {
 
   const dummyEmail = 'dummy@gmail.com'
   const dummyPassWord = 'dummy1234'
-
 
   const formik = useFormik({
     initialValues: {

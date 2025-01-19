@@ -14,6 +14,9 @@ const ProfilePage = () => {
   const [isLoadingDelete, setIsLoadingDelete] = useState(false)
 
   let userData = useSelector((store) => store.user.items);
+
+  console.log(userData);
+  
   
   let dispatch = useDispatch()
   let navigate = useNavigate()
@@ -50,6 +53,8 @@ const ProfilePage = () => {
       
     }
   }
+
+
 
 
   const handleDelete = async () => {
@@ -95,7 +100,7 @@ const ProfilePage = () => {
                 isLoadingEdit ? <span className="loading loading-spinner loading-md"></span>  : "Edit Profile"
               }
             </label>
-            <button className="btn btn-outline btn-error text-screenColor ml-3 hover:bg-hoverColor hover:text-white" onClick={handleDelete}>
+            <button className={ userData.username == "Dummy" ?  `btn btn-outline btn-error text-screenColor ml-3 hover:bg-hoverColor hover:text-white cursor-not-allowed opacity-20 pointer-events-none` : 'btn btn-outline btn-error text-screenColor ml-3 hover:bg-hoverColor hover:text-white'} onClick={handleDelete}>
               {
                 isLoadingDelete ? <span className="loading loading-spinner loading-md"></span>  : "Delete Account"
               }

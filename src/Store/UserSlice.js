@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit"
 const UserSlice = createSlice({
     name: 'user',
     initialState: {
-        items: null
+        items: null,
     },
     reducers: {
         addUser: (state,action) => {
@@ -13,7 +13,7 @@ const UserSlice = createSlice({
         },
         deleteUser: (state,action) => {
           state.items = []
-        }
+        },
     }
 })
 

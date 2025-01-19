@@ -1,4 +1,5 @@
-export const baseUrl = 'https://tobi-shop-backend.onrender.com';
+// export const baseUrl = 'https://tobi-shop-backend.onrender.com';
+export const baseUrl = 'http://localhost:8000';
 export const signupUrl = '/users/signup';
 export const loginUrl = '/users/login';
 export const getUrl = '/users';

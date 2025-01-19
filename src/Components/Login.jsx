@@ -36,6 +36,9 @@ const Login = () => {
     setShowPass(!ShowPass)
   }
 
+  const dummyEmail = 'dummy@gmail.com'
+  const dummyPassWord = 'dummy1234'
+
 
   const formik = useFormik({
     initialValues: {
@@ -66,6 +69,12 @@ const Login = () => {
       action.resetForm()
     }
   })
+
+  const handleTestData = () => {
+    formik.values.email = dummyEmail
+    formik.values.password = dummyPassWord
+  }
+  
 
   return (
     <div>
@@ -139,6 +148,7 @@ const Login = () => {
                   error ? <p className='text-red-900 text-xl text-center'>{error}</p> : ''
                 }
               </div>
+              <button type={'submit'} onClick={handleTestData} className='mt-7 bg-transparent text-black border-black border-2 w-4/5 mx-auto rounded-xl px-5 py-2 flex items-center justify-center cursor-pointer hover:scale-105 duration-300 ease-in-out mb-3'>Login With Test Credentials</button>
             </form>
   
             <p className="mt-10 text-center text-sm text-gray-500">

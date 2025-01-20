@@ -14,9 +14,6 @@ const ProfilePage = () => {
   const [isLoadingDelete, setIsLoadingDelete] = useState(false)
 
   let userData = useSelector((store) => store.user.items);
-
-  console.log(userData);
-  
   
   let dispatch = useDispatch()
   let navigate = useNavigate()
